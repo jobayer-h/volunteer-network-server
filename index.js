@@ -25,7 +25,9 @@ client.connect(err => {
     const task = req.body;
     volunteerCollection.insertOne(task)
         .then(result => {
-            console.log('Task Added Successfully');
+            if (result.insertedCount > 0) {
+              res.send(result.insertedCount > 0)
+            }
         })
   });
 
